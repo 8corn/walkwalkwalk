@@ -18,11 +18,14 @@
             android:layout_marginTop="171dp"
             android:src="@drawable/walklogo"/>
 
-        <ProgressBar
+        <com.airbnb.lottie.LottieAnimationView
             android:layout_width="155dp"
             android:layout_height="155dp"
+            android:layout_gravity="center"
             android:layout_marginTop="411dp"
-            android:layout_gravity="center" />
+            app:lottie_autoPlay="true"
+            app:lottie_loop="true"
+            app:lottie_rawRes="@raw/walk_start" />
 
     </LinearLayout>
 
