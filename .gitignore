@@ -162,4 +162,6 @@ fabric.properties
 
 !/gradle/wrapper/gradle-wrapper.jar
 
+/src/main/res/values/key.xml
+
 # End of https://www.toptal.com/developers/gitignore/api/androidstudio,kotlin,firebase

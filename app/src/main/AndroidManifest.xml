@@ -11,6 +11,15 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.Walkwalkwalk">
+        <meta-data
+            android:name="com.naver.maps.map.CLIENT_ID"
+            android:value= "@string/Naver_Client_ID" />
+        <activity
+            android:name=".auth.JoinActivity"
+            android:exported="false" />
+        <activity
+            android:name=".LoadingActivity"
+            android:exported="false" />
         <activity
             android:name=".auth.StartActivity"
             android:exported="false" />

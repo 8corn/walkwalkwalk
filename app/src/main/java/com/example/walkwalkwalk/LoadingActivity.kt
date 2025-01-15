@@ -1,21 +1,20 @@
-package com.example.walkwalkwalk.auth
+package com.example.walkwalkwalk
 
 import android.content.Intent
 import android.os.Bundle
 import android.os.Handler
 import android.os.Looper
 import androidx.appcompat.app.AppCompatActivity
-import com.example.walkwalkwalk.databinding.ActivityOnBoardingBinding
-import com.example.walkwalkwalk.databinding.ActivityStartBinding
+import com.example.walkwalkwalk.databinding.ActivityLoadingBinding
 
-class OnBoardingActivity : AppCompatActivity() {
+class LoadingActivity : AppCompatActivity() {
 
-    private lateinit var binding: ActivityOnBoardingBinding
+    private lateinit var binding: ActivityLoadingBinding
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
-        binding = ActivityOnBoardingBinding.inflate(layoutInflater)
+        binding = ActivityLoadingBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
         delay ()
@@ -23,7 +22,7 @@ class OnBoardingActivity : AppCompatActivity() {
 
     private fun delay () {
         Handler(Looper.getMainLooper()).postDelayed({
-            val intent = Intent(this, StartActivity::class.java)
+            val intent = Intent(this, MainActivity::class.java)
             startActivity(intent)
             finish()
         }, 4000)

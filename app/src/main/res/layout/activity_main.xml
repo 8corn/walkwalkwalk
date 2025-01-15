@@ -6,6 +6,26 @@
     android:layout_height="match_parent"
     tools:context=".MainActivity">
 
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
 
+        <androidx.fragment.app.FragmentContainerView
+            android:id="@+id/main_control_nav"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1" />
+
+        <com.google.android.material.bottomnavigation.BottomNavigationView
+            android:id="@+id/main_bottom_navi"
+            android:layout_width="match_parent"
+            android:layout_height="90dp"
+            app:itemIconSize="40dp"
+            app:itemIconTint="@color/walkwalkwalk"
+            app:labelVisibilityMode="unlabeled"
+            app:menu="@menu/bottom_navi_menu"/>
+
+    </LinearLayout>
 
 </RelativeLayout>
