@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item
+        android:id="@+id/Home"
+        android:icon="@drawable/dogfoot_home"
+        android:title="@string/home"
+        />
+
+    <item
+        android:id="@+id/Search"
+        android:icon="@drawable/walk_search"
+        android:title="@string/search"
+        />
+
+    <item
+        android:id="@+id/Alarm"
+        android:icon="@drawable/walk_alarm"
+        android:title="@string/alarm"
+        />
+
+    <item
+        android:id="@+id/Setting"
+        android:icon="@drawable/walk_setting"
+        android:title="@string/setting"
+        />
+
+</menu>
