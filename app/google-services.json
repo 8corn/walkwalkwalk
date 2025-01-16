@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "953119011167",
+    "project_id": "walkwalkwalk-2d6f0",
+    "storage_bucket": "walkwalkwalk-2d6f0.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:953119011167:android:364b02a6c5280054e0c6ea",
+        "android_client_info": {
+          "package_name": "com.example.walkwalkwalk"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBKJxhIgeCnt2Z5teO3ZG--jmFZPeYFX34"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
