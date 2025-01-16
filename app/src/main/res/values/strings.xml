@@ -16,8 +16,8 @@
     <string name="alarm">alarm</string>
     <string name="setting">setting</string>
 
-
-    <string name="from_check">지역 인증</string>
+    <string name="txt_address_string">받은 주소</string>
+    <string name="from_check">가주지 가져오기</string>
     <string name="pass">pass 인증</string>
     <string name="choose_from">지역을 선택하시오.</string>
 </resources>

@@ -8,8 +8,6 @@ pluginManagement {
             }
         }
         mavenCentral()
-        maven(url = "https://jitpack.io")
-        maven(url = "https://repository.map.naver.com/archive/maven")
         gradlePluginPortal()
     }
 }
@@ -18,8 +16,8 @@ dependencyResolutionManagement {
     repositories {
         google()
         mavenCentral()
-        maven(url = "https://jitpack.io")
-        maven(url = "https://repository.map.naver.com/archive/maven")
+        maven(url="https://jitpack.io")
+        maven(url="https://repository.map.naver.com/archive/maven")
     }
 }
 

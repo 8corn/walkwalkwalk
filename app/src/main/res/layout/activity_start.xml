@@ -47,7 +47,7 @@
             android:layout_marginTop="30dp"
             android:paddingTop="2dp"
             android:background="@drawable/txt_background"
-            app:passwordToggleEnabled="false"
+            app:passwordToggleEnabled="true"
             android:textColorHint="@color/txthint"
             app:boxBackgroundMode="none">
 
