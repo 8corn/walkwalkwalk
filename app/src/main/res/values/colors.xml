@@ -24,4 +24,5 @@
     <color name="txtcolor">#A2A2A2</color>
     <color name="txthint">#54000000</color>
     <color name="walkwalkwalk">#08EE78</color>
+    <color name="bmk_background">#F1F1F1</color>
 </resources>

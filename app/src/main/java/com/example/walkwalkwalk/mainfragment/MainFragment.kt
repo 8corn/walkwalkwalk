@@ -24,6 +24,4 @@ class MainFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
         binding.mainFragmentMap.onCreate(savedInstanceState)
     }
-
-
 }

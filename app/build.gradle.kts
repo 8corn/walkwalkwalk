@@ -49,6 +49,8 @@ dependencies {
     implementation(libs.naver.maps.sdk)
     implementation(platform(libs.firebase.bom))
     implementation(libs.play.services.auth)
+    implementation(libs.firebase.firestore)
+    implementation(libs.naver.oauth)
 
     implementation(libs.androidx.core.ktx)
     implementation(libs.androidx.appcompat)

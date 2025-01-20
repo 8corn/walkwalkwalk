@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
@@ -9,10 +9,6 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_alignParentStart="true"
-        android:layout_alignParentTop="true"
-        android:layout_alignParentEnd="true"
-        android:layout_alignParentBottom="true"
         android:layout_marginStart="0dp"
         android:orientation="vertical">
 
@@ -101,14 +97,15 @@
         </com.google.android.material.textfield.TextInputLayout>
 
         <TextView
-            android:id="@+id/join_pwd_check_txt"
+            android:id="@+id/join_pwd_check_msg"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="53dp"
-            android:text="@string/pwd_check"
-            android:textColor="@color/txtcolor"
-            android:textSize="13sp"
-            android:visibility="visible"/>
+            android:layout_marginTop="5dp"
+            android:text="@string/pwd_check_no"
+            android:textColor="@color/txthint"
+            android:visibility="gone"
+            android:textSize="13sp" />
 
         <TextView
             android:layout_width="wrap_content"
@@ -172,6 +169,12 @@
             android:text="@string/pass"
             android:background="@drawable/btn_background_pass" />
 
+        <WebView
+            android:id="@+id/join_webview"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:visibility="gone"/>
+
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -181,11 +184,6 @@
             android:textColor="@color/txtcolor"
             android:textSize="13sp" />
 
-        <WebView
-            android:id="@+id/join_webview"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content" />
-
         <com.google.android.material.textfield.TextInputLayout
             android:layout_width="335dp"
             android:layout_height="48dp"
@@ -193,27 +191,15 @@
             android:background="@drawable/txt_background"
             app:boxBackgroundMode="none">
 
-        <com.google.android.material.textfield.TextInputEditText
-            android:id="@+id/join_from_txt"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:inputType="text"
-            android:editable="false"
-            android:padding="0dp" />
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/join_from_txt"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:inputType="text"
+                android:editable="false"
+                android:padding="0dp" />
 
         </com.google.android.material.textfield.TextInputLayout>
-
-        <androidx.appcompat.widget.AppCompatButton
-            android:id="@+id/join_from_check_btn"
-            android:layout_width="335dp"
-            android:layout_height="48dp"
-            android:layout_gravity="center_horizontal"
-            android:layout_marginTop="19dp"
-            android:textStyle="bold"
-            android:textColor="@color/white"
-            android:textSize="20sp"
-            android:text="@string/from_check"
-            android:background="@drawable/btn_background" />
 
         <androidx.appcompat.widget.AppCompatButton
             android:id="@+id/join_next_btn"
@@ -229,4 +215,4 @@
 
     </LinearLayout>
 
-</RelativeLayout>
+</ScrollView>
