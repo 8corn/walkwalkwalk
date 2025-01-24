@@ -14,13 +14,11 @@ import android.webkit.JavascriptInterface
 import android.webkit.JsResult
 import android.webkit.SslErrorHandler
 import android.webkit.WebChromeClient
-import android.webkit.WebResourceError
 import android.webkit.WebResourceRequest
 import android.webkit.WebView
 import android.webkit.WebViewClient
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
-import com.example.walkwalkwalk.R
 import com.example.walkwalkwalk.databinding.ActivityJoinBinding
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.FirebaseFirestore
@@ -180,7 +178,7 @@ class JoinActivity : AppCompatActivity() {
         auth.createUserWithEmailAndPassword(email, password)
             .addOnCompleteListener(this) { task ->
                 if (task.isSuccessful) {
-                    val uID = auth.currentUser
+                    val uID = auth.customAuthDomain
 
                     val userData = hashMapOf(
                         "uid" to uID,

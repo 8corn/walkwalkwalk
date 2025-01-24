@@ -51,6 +51,7 @@ dependencies {
     implementation(libs.play.services.auth)
     implementation(libs.firebase.firestore)
     implementation(libs.naver.oauth)
+    implementation(libs.kakao.sdk.user)
 
     implementation(libs.androidx.core.ktx)
     implementation(libs.androidx.appcompat)

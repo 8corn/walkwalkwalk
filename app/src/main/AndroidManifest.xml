@@ -16,6 +16,9 @@
         android:usesCleartextTraffic="true"
         android:theme="@style/Theme.Walkwalkwalk">
         <meta-data
+            android:name="com.kakao.sdk.AppKey"
+            android:value="@string/Kakao_native_app_key"/>
+        <meta-data
             android:name="com.naver.maps.map.CLIENT_ID"
             android:value= "@string/Naver_Client_ID" />
         <activity
