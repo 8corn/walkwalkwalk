@@ -17,6 +17,10 @@ import com.google.android.gms.auth.api.signin.GoogleSignInOptions
 import com.google.android.gms.common.api.ApiException
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.GoogleAuthProvider
+import com.kakao.sdk.auth.model.OAuthToken
+import com.kakao.sdk.common.model.ClientError
+import com.kakao.sdk.common.model.ClientErrorCause
+import com.kakao.sdk.user.UserApiClient
 import com.navercorp.nid.NaverIdLoginSDK
 import com.navercorp.nid.oauth.NidOAuthLogin
 import com.navercorp.nid.oauth.OAuthLoginCallback
@@ -69,6 +73,17 @@ class StartActivity : AppCompatActivity() {
             .build()
         googleSignInClient = GoogleSignIn.getClient(this, gso)
 
+        val mCallback: (OAuthToken?, Throwable?) -> Unit = { token, error ->
+            if (error != null) {
+                Log.e("KakaoLoginFail", "카카오 로그인 실패 $error")
+            } else if (token != null) {
+                Log.e("KakaoLoginSuccess", "카카오 로그인 성공 ${token.accessToken}")
+                val intent = Intent(this, MainActivity::class.java)
+                startActivity(intent)
+                finish()
+            }
+        }
+
         if (auth.currentUser != null) {
             val intent = Intent(this, MainActivity::class.java)
             startActivity(intent)
@@ -91,6 +106,29 @@ class StartActivity : AppCompatActivity() {
 
         binding.startNaverLogin.setOnClickListener {
             startNaverLogin()
+        }
+
+        binding.startKakaoLogin.setOnClickListener {
+            if (UserApiClient.instance.isKakaoTalkLoginAvailable(this)) {
+                UserApiClient.instance.loginWithKakaoTalk(this) { token, error ->
+                    if (error != null) {
+                        Log.e("NoKakaoLogin", "카카오 로그인 사용자 취소 $error")
+
+                        if (error is ClientError && error.reason == ClientErrorCause.Cancelled) {
+                            return@loginWithKakaoTalk
+                        } else {
+                            UserApiClient.instance.loginWithKakaoAccount(this, callback = mCallback)
+                        }
+                    } else if (token != null) {
+                        Log.e("KakaoLoginComplete", "카카오 로그인 성공 ${token.accessToken}")
+                        val intent = Intent(this, MainActivity::class.java)
+                        startActivity(intent)
+                        finish()
+                    }
+                }
+            } else {
+                UserApiClient.instance.loginWithKakaoAccount(this, callback = mCallback)
+            }
         }
     }
 
