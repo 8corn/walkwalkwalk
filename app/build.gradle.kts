@@ -52,6 +52,7 @@ dependencies {
     implementation(libs.firebase.firestore)
     implementation(libs.naver.oauth)
     implementation(libs.kakao.sdk.user)
+    implementation(libs.kakao.sdk.share)
 
     implementation(libs.androidx.core.ktx)
     implementation(libs.androidx.appcompat)

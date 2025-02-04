@@ -18,10 +18,11 @@ naver-maps-sdk = "3.20.0"
 firebase-bom = "33.8.0"
 firestore = "25.1.1"
 play-services-auth = "21.3.0"
-navigationFragmentKtx = "2.8.5"
-navigationUiKtx = "2.8.5"
+navigationFragmentKtx = "2.8.6"
+navigationUiKtx = "2.8.6"
 navercorp = "5.10.0"
 kakao-sdk-user = "2.20.6"
+kakao-sdk-share = "2.20.6"
 
 [libraries]
 androidx-core-ktx = { group = "androidx.core", name = "core-ktx", version.ref = "coreKtx" }
@@ -35,6 +36,7 @@ androidx-constraintlayout = { group = "androidx.constraintlayout", name = "const
 firebase-auth = { group = "com.google.firebase", name = "firebase-auth", version.ref = "firebaseAuth" }
 naver-oauth = { group = "com.navercorp.nid", name = "oauth", version.ref = "navercorp" }
 kakao-sdk-user = { module = "com.kakao.sdk:v2-user", name = "kakao-sdk-user", version.ref = "kakao-sdk-user" }
+kakao-sdk-share = {module = "com.kakao.sdk:v2-share", name = "kakao-sdk-share", version.ref = "kakao-sdk-share" }
 
 lottie = { group = "com.airbnb.android", name = "lottie", version.ref = "lottie" }
 fragment = { group = "androidx.fragment", name = "fragment", version.ref = "fragment" }

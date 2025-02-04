@@ -169,12 +169,6 @@
             android:text="@string/pass"
             android:background="@drawable/btn_background_pass" />
 
-        <WebView
-            android:id="@+id/join_webview"
-            android:layout_width="match_parent"
-            android:layout_height="0dp"
-            android:visibility="gone"/>
-
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"

@@ -207,6 +207,6 @@ Temporary Items
 
 app/src/main/res/values/key.xml
 
-app/src/main/java/com/example/walkwalkwalk/auth/kakaohash.kt
+app/src/main/assets/daum.html
 
 # End of https://www.toptal.com/developers/gitignore/api/androidstudio,kotlin,firebase,android,java,macos
