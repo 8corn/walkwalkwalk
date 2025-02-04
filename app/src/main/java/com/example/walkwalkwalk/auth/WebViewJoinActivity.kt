@@ -1,11 +1,9 @@
 package com.example.walkwalkwalk.auth
 
-import android.app.Dialog
 import android.net.http.SslError
 import android.os.Bundle
 import android.os.Message
 import android.util.Log
-import android.view.View
 import android.view.ViewGroup
 import android.webkit.JavascriptInterface
 import android.webkit.JsResult
@@ -17,13 +15,8 @@ import android.webkit.WebView
 import android.webkit.WebViewClient
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
-import androidx.core.view.get
 import com.example.walkwalkwalk.R
 import com.example.walkwalkwalk.databinding.ActivityWebViewJoinBinding
-import kotlinx.coroutines.CoroutineScope
-import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.launch
-import kotlinx.coroutines.withContext
 
 class WebViewJoinActivity : AppCompatActivity() {
 
@@ -40,6 +33,7 @@ class WebViewJoinActivity : AppCompatActivity() {
     }
 
     private fun showKakaoAddressWebView() {
+
         binding.webJoinWebview.settings.apply {
             javaScriptEnabled = true
             javaScriptCanOpenWindowsAutomatically = true
@@ -54,10 +48,9 @@ class WebViewJoinActivity : AppCompatActivity() {
         binding.webJoinWebview.apply {
             val url = getString(R.string.kakao_url_2)
 
-            addJavascriptInterface(WebViewData(), "php에서 적용한 name")
+            addJavascriptInterface(WebViewData(), "window")
             webViewClient = client
             webChromeClient = chromeClient
-            visibility = View.VISIBLE
 
             loadUrl(url)
             Log.d("WebViewDebug", "kakao_url: $url")
@@ -69,44 +62,33 @@ class WebViewJoinActivity : AppCompatActivity() {
             return false
         }
 
+        @Deprecated("Use onReceivedHttpError and onReceivedSslError instead")
         override fun onReceivedError(view: WebView?, errorCode: Int, description: String?, failngUrl: String?) {
             Log.e("WebViewError", "Error $errorCode: $description (URL: $failngUrl)")
             Toast.makeText(this@WebViewJoinActivity, "웹페이지 로딩 실패: $description", Toast.LENGTH_SHORT).show()
-
         }
 
         override fun onReceivedSslError(view: WebView?, handler: SslErrorHandler?, error: SslError?) {
-            handler?.proceed()
+            handler?.cancel()
         }
     }
 
     private inner class WebViewData {
         @JavascriptInterface
         fun getAddress(zoneCode: String, roadAddress: String, buildingName: String) {
-            CoroutineScope(Dispatchers.Default).launch {
-                withContext(CoroutineScope(Dispatchers.Main).coroutineContext) {
-//                    binding.joinFromTxt.setText("($zoneCode) $roadAddress $buildingName")
-                }
-            }
+            Log.d("WebViewDebug", "getAddress 호출됨: ($zoneCode) $roadAddress $buildingName")
         }
     }
 
     private val chromeClient = object : WebChromeClient() {
         override fun onCreateWindow(view: WebView?, isDialog: Boolean, isUserGesture: Boolean, resultMsg: Message?): Boolean {
-            val newWebView = WebView(this@WebViewJoinActivity)
+            val newWebView = WebView(view?.context!!).apply {
+                settings.javaScriptEnabled = true
+                settings.domStorageEnabled = true
+            }
 
-            newWebView.settings.javaScriptEnabled = true
-
-            val dialog = Dialog(this@WebViewJoinActivity)
-
-            dialog.setContentView(newWebView)
-
-            val params = dialog.window!!.attributes
-
-            params.width = ViewGroup.LayoutParams.MATCH_PARENT
-            params.height = ViewGroup.LayoutParams.MATCH_PARENT
-            dialog.window!!.attributes = params
-            dialog.show()
+            val parent = view.parent as ViewGroup
+            parent.addView(newWebView)
 
             newWebView.webChromeClient = object : WebChromeClient() {
                 override fun onJsAlert(view: WebView?, url: String?, message: String?, result: JsResult?): Boolean {
@@ -115,7 +97,7 @@ class WebViewJoinActivity : AppCompatActivity() {
                 }
 
                 override fun onCloseWindow(window: WebView?) {
-                    dialog.dismiss()
+                    parent.removeView(window)
                 }
             }
 

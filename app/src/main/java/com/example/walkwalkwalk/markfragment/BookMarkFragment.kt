@@ -25,7 +25,8 @@ class BookMarkFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
 
         val bookmarkList = arrayListOf(
-            BookMark(com.example.walkwalkwalk.R.drawable.bookmark_star, "즐겨찾기2", 30)
+            BookMark(com.example.walkwalkwalk.R.drawable.bookmark_star, "즐겨찾기2", 30),
+            BookMark(com.example.walkwalkwalk.R.drawable.bookmark_star, "오늘의 달리기", 45)
         )
 
         binding.bookmarkFrgRvProfile.layoutManager = LinearLayoutManager(requireContext(), LinearLayoutManager.VERTICAL, false)

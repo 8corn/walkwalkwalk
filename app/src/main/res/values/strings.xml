@@ -16,6 +16,7 @@
     <string name="id_check">아이디 중복 확인</string>
 
     <string name="bookmark">즐겨찾기</string>
+    <string name="bookmark_add">즐겨찾기 추가</string>
     <string name="opp">임시</string>
     <string name="bookmark_group">즐겨찾기 그룹</string>
 

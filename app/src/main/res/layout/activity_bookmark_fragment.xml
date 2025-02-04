@@ -22,11 +22,27 @@
             android:gravity="center"
             android:text="@string/bookmark_group" />
 
+        <androidx.appcompat.widget.AppCompatButton
+            android:layout_width="394dp"
+            android:layout_height="49dp"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginTop="27dp"
+            android:background="@drawable/bookmark_background"
+            android:backgroundTint="@color/bmk_background"
+            android:drawableStart="@drawable/add_circle"
+            android:gravity="start|center_vertical"
+            android:text="@string/bookmark_add"
+            android:paddingStart="10sp"
+            android:paddingEnd="10sp"
+            android:drawablePadding="7sp"
+            android:textColor="@color/black"
+            android:textSize="15sp" />
+
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/bookmark_frg_rv_profile"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="22dp"
+            android:layout_marginTop="12dp"
             android:layout_marginStart="24dp" />
 
     </LinearLayout>
