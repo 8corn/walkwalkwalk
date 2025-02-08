@@ -16,6 +16,7 @@
             android:layout_height="122dp"
             android:layout_gravity="center"
             android:layout_marginTop="171dp"
+            android:contentDescription="@null"
             android:src="@drawable/walklogo"/>
 
         <com.airbnb.lottie.LottieAnimationView

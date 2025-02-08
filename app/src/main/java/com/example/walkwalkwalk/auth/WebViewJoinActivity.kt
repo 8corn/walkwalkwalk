@@ -1,5 +1,7 @@
 package com.example.walkwalkwalk.auth
 
+import android.app.Activity
+import android.content.Intent
 import android.net.http.SslError
 import android.os.Bundle
 import android.os.Message
@@ -35,20 +37,24 @@ class WebViewJoinActivity : AppCompatActivity() {
     private fun showKakaoAddressWebView() {
 
         binding.webJoinWebview.settings.apply {
-            javaScriptEnabled = true
-            javaScriptCanOpenWindowsAutomatically = true
-            setSupportMultipleWindows(true)
-            cacheMode = WebSettings.LOAD_NO_CACHE
-            domStorageEnabled = true
-            allowFileAccess = true
+            javaScriptEnabled = true                        // 자바 스크립트 허용
+            javaScriptCanOpenWindowsAutomatically = true    // 자바 스크립트 새창 띄우기 허용
+            loadWithOverviewMode = false                    // 웹뷰보다 컨텐츠가 클 경우 스크린에 맞게 조정
+            useWideViewPort = true                          // html의 viewport 메타 태그 지원
+            builtInZoomControls = false                     // 화면 확대/ 축소 허용
+            displayZoomControls = false
+            cacheMode = WebSettings.LOAD_NO_CACHE           // 브라우저 캐쉬 허용
+            setSupportMultipleWindows(true)                 // 새창 띄우기 허용
+            setSupportZoom(false)                           // 화면 확대 허용
+            domStorageEnabled = true                        // 로컬 저장 허용
+            allowFileAccess = true                          // 위부 스크립트 로드 허용
             allowContentAccess = true
-            mixedContentMode = WebSettings.MIXED_CONTENT_ALWAYS_ALLOW
         }
 
         binding.webJoinWebview.apply {
             val url = getString(R.string.kakao_url_2)
 
-            addJavascriptInterface(WebViewData(), "window")
+            addJavascriptInterface(WebViewData(this@WebViewJoinActivity), "Android")
             webViewClient = client
             webChromeClient = chromeClient
 
@@ -73,10 +79,20 @@ class WebViewJoinActivity : AppCompatActivity() {
         }
     }
 
-    private inner class WebViewData {
+    private inner class WebViewData(private val activity: WebViewJoinActivity) {
         @JavascriptInterface
         fun getAddress(zoneCode: String, roadAddress: String, buildingName: String) {
             Log.d("WebViewDebug", "getAddress 호출됨: ($zoneCode) $roadAddress $buildingName")
+
+            val fullAddress = "$roadAddress $buildingName ($zoneCode)"
+
+            activity.runOnUiThread {
+                val intent = Intent().apply {
+                    putExtra("address", fullAddress)
+                }
+                activity.setResult(Activity.RESULT_OK, intent)
+                activity.finish()
+            }
         }
     }
 

@@ -15,8 +15,13 @@ class MapFragment : BaseMapFragment<ActivityMainFragmentBinding>(R.layout.activi
     }
 
     override fun initOnMapReady(naverMap: NaverMap) {
-        naverMap.uiSettings.isZoomControlEnabled = true
         naverMap.moveCamera(CameraUpdate.scrollTo(LatLng(37.5670135, 126.9783740)))
+        naverMap.uiSettings.apply {
+            isCompassEnabled = false
+            isScaleBarEnabled = false
+            isZoomControlEnabled = false
+            isLocationButtonEnabled = false
+        }
     }
 
     override fun iniViewCreated() {
@@ -24,7 +29,6 @@ class MapFragment : BaseMapFragment<ActivityMainFragmentBinding>(R.layout.activi
     }
 
     override fun initOnResume() {
-        mapView?.onResume()
+        mapView.onResume()
     }
-
 }

@@ -79,9 +79,9 @@ class StartActivity : AppCompatActivity() {
         }
 
         binding.startLoginBtn.setOnClickListener {
-            signin()
-//            val intent = Intent(this, LoadingActivity::class.java)
-//            startActivity(intent)
+//            signin()
+            val intent = Intent(this, LoadingActivity::class.java)
+            startActivity(intent)
         }
 
         binding.startJoinBtn.setOnClickListener {

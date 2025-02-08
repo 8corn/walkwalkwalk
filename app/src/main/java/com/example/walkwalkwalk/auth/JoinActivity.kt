@@ -1,5 +1,6 @@
 package com.example.walkwalkwalk.auth
 
+import android.app.Activity
 import android.content.Intent
 import android.os.Bundle
 import android.text.Editable
@@ -7,6 +8,7 @@ import android.text.TextWatcher
 import android.util.Log
 import android.view.View
 import android.widget.Toast
+import androidx.activity.result.contract.ActivityResultContracts
 import androidx.appcompat.app.AppCompatActivity
 import com.example.walkwalkwalk.databinding.ActivityJoinBinding
 import com.google.firebase.auth.FirebaseAuth
@@ -27,6 +29,7 @@ class JoinActivity : AppCompatActivity() {
         setContentView(binding.root)
 
         auth = FirebaseAuth.getInstance()
+        firestore = FirebaseFirestore.getInstance()
 
         binding.joinPwdTxt.addTextChangedListener(object : TextWatcher {
             override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {}
@@ -55,12 +58,20 @@ class JoinActivity : AppCompatActivity() {
 
         binding.joinFromTxt.setOnClickListener {
             val intent = Intent(this@JoinActivity, WebViewJoinActivity::class.java)
-            startActivity(intent)
-            finish()
+            addressLauncher.launch(intent)
         }
 
         binding.joinNextBtn.setOnClickListener {
             signup()
+        }
+    }
+
+    private val addressLauncher = registerForActivityResult(
+        ActivityResultContracts.StartActivityForResult()
+    ) { result ->
+        if (result.resultCode == Activity.RESULT_OK) {
+            val address = result.data?.getStringExtra("address")
+            binding.joinFromTxt.setText(address)
         }
     }
 
@@ -82,22 +93,24 @@ class JoinActivity : AppCompatActivity() {
     }
 
     private fun signup() {
-        val email = binding.joinIdTxt.toString().trim()
-        val password = binding.joinPwdTxt.toString().trim()
-        val name = binding.joinNameTxt.toString().trim()
-        val phonenum = binding.joinNumberTxt.toString().trim()
+        val email = binding.joinIdTxt.text.toString().trim()
+        val password = binding.joinPwdTxt.text.toString().trim()
+        val name = binding.joinNameTxt.text.toString().trim()
+        val phonenum = binding.joinNumberTxt.text.toString().trim()
+        val address = binding.joinFromTxt.text.toString().trim()
 
         auth.createUserWithEmailAndPassword(email, password)
             .addOnCompleteListener(this) { task ->
                 if (task.isSuccessful) {
-                    val uID = auth.customAuthDomain
+                    val uID = auth.currentUser?.uid
 
                     val userData = hashMapOf(
                         "uid" to uID,
                         "email" to email,
                         "password" to password,
                         "name" to name,
-                        "phonemun" to phonenum,
+                        "phonenum" to phonenum,
+                        "address" to address,
                     )
 
                     firestore.collection("users")

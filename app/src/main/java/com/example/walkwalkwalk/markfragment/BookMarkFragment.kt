@@ -29,8 +29,10 @@ class BookMarkFragment : Fragment() {
             BookMark(com.example.walkwalkwalk.R.drawable.bookmark_star, "오늘의 달리기", 45)
         )
 
-        binding.bookmarkFrgRvProfile.layoutManager = LinearLayoutManager(requireContext(), LinearLayoutManager.VERTICAL, false)
-        binding.bookmarkFrgRvProfile.setHasFixedSize(true)
-        binding.bookmarkFrgRvProfile.adapter = BookAdapter(bookmarkList)
+        binding.bookmarkFrgRvProfile.apply {
+            layoutManager = LinearLayoutManager(requireContext(), LinearLayoutManager.VERTICAL,false)
+            setHasFixedSize(true)
+            adapter = BookAdapter(bookmarkList)
+        }
     }
 }
